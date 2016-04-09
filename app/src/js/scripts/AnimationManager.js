@@ -1,9 +1,8 @@
 var $ = require('jquery');
 var AnimationElement = require('./AnimationElement');
 module.exports = class AnimationManager {
-	constructor(invert) {
-		this.steps = [];
-		invert && this.invert();
+	constructor(steps) {
+		this.steps = steps;
 	}
 	invert() {
 		var show = this.show;
