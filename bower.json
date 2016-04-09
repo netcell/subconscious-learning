@@ -1,0 +1,15 @@
+{
+  "name": "somia",
+  "description": "dream without end",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/vunq90/subconscious-learning",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "www/lib",
+    "test",
+    "tests"
+  ]
+}
