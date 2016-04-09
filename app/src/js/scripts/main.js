@@ -4,6 +4,7 @@ require('./jquery.transform');
 var AnimMan = require('./AnimationManager');
 var AnimEl = require('./AnimationElement');
 var SleepTracker = require('./SleepTracker');
+var Somia = require('./Somia');
 module.exports = function() {
 	var tracker = new SleepTracker(1000, '#chart-placeholder', 30000, 60 * 1000, 0.05);
 	var animation = new AnimMan([

@@ -4,7 +4,7 @@ module.exports = {
 	/** Folders */
 	folder : {
 		src   : './src',
-		serve : './dist',
-		build : './dist'
+		serve : '../somia/www',
+		build : '../somia/www'
 	}
 }

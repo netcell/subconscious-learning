@@ -3,3 +3,6 @@ node_modules
 serve
 .DS_Store
 app/dist
+somia/www
+somia/www/
+somia/platforms
