@@ -1,4 +1,4 @@
-var $ = require('jquery');
+window.$ = window.jQuery = require('jquery');
 
 var AnimMan = require('./AnimationManager');
 var AnimEl = require('./AnimationElement');

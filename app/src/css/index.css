@@ -1,7 +1,9 @@
-html body {
+html, body {
 	background-color: #222;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #D8D8D8;
+	width: 100%;
+	height: 100%;
 }
 .hidden {
 	display: none;
@@ -137,4 +139,14 @@ img {
 	text-align: center;
 	color: #D8D8D8;
 	cursor: pointer;
+}
+.chart-container {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 200px;
+	padding-top: 70px;
+}
+#chart-placeholder {
+	width: 100%;
+	height: 100%;
 }

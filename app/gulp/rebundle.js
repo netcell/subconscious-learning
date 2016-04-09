@@ -3,6 +3,7 @@ var browserSync = require('browser-sync');
 var duration    = require('gulp-duration');
 var notifier    = require('node-notifier');
 var notify      = require('gulp-notify');
+var uglify      = require('gulp-uglify');
 var config      = require('./config');
 var source      = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -19,6 +20,7 @@ module.exports = function rebundle(bundler, dest) {
 	})
 	.pipe(duration('rebundle'))
 	.pipe(source('index.js'))
+	.pipe(buffer()).pipe(uglify())
 	.pipe(gulp.dest(dest))
 	.pipe(notify({
 		title   : 'BUILD SUCCESS',
