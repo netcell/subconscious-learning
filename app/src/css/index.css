@@ -6,6 +6,9 @@ html body {
 .hidden {
 	display: none;
 }
+.animation-show {
+	opacity: 0;
+}
 div {
 	-webkit-user-select:none;
 	box-sizing: border-box;
@@ -52,7 +55,6 @@ img {
 	text-align: center;
 	margin-top: -45px;
 	font-weight: 100;
-	opacity: 0;
 	font-weight: 200;
 }
 .button-group {
@@ -91,3 +93,11 @@ img {
 	background: #D8D8D8;
 	margin: 0 auto;
 } 
+.level1-back {
+	width: 100%;
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+	color: #D8D8D8;
+	cursor: pointer;
+}
