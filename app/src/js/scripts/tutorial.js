@@ -15,12 +15,12 @@ module.exports = function() {
 	animation.show().then(function() {
 		$('.tutorial-back').one('click', function() {
 			animation.hide().then(function() {
-				window.location = "/level1.html";
+				window.location = "level1.html";
 			})
 		});
 		$('#dreamon').one('click', function() {
 			animation.hide().then(function() {
-				window.location = "/main.html";
+				window.location = "main.html";
 			})
 		});
 	})

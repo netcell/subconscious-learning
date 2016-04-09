@@ -31,12 +31,12 @@ module.exports = function() {
 	animation.show().then(function() {
 		$('.level1-back').one('click', function() {
 			animation.hide().then(function() {
-				window.location = "/index.html";
+				window.location = "index.html";
 			})
 		});
 		$('.upper').one('click', function() {
 			animation2.show().then(function() {
-				window.location = "/tutorial.html";
+				window.location = "tutorial.html";
 			})
 		});
 	})

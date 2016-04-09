@@ -74,6 +74,7 @@ module.exports = class SleepTracker {
 		} else if (now - this.lastAwake > this.timeToSleep) {
 			this.awake = false;
 		}
+		$('#debug').text(this.awake ? 'AWAKE' : 'SLEEPING')
 	}
 	deviceMotionHandler(eventData) {
 		var acceleration = eventData.acceleration;

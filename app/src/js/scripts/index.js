@@ -22,7 +22,7 @@ module.exports = function() {
 	animation.show().then(function() {
 		$('#level1').one('click', function() {
 			animation.hide().then(function() {
-				window.location = "/level1.html";
+				window.location = "level1.html";
 			})
 		});
 	})
