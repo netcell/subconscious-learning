@@ -1,21 +1,25 @@
+window._ = require('lodash');
+require('./lodash.math.js');
 var $ = require('jquery');
 var jqueryflot = require('./jquery.flot');
 var jqueryflottime = require('./jquery.flot.time');
 var curvedLines = require('./curvedLines');
 
+var number_of_points = 10;
+
 module.exports = class SleepTracker {
-	constructor(interval, selector) {
+	constructor(interval, selector, sleepSampleSize, timeToSleep, sleepThreshold) {
 		var now = Date.now();
-		this.data = _.range(30).map(number => [now - number * 1000, 0]).reverse();
-		// var now = Date.now();
-		// for (var i = 0; i < 60; i--) {
-		// 	now = now - i * 500;
-		// 	this.data[0].push([now , 0]);
-		// }
+		this.data = _.range(number_of_points).map(number => [now - number * 1000, 0]).reverse();
 		this.previous = 0;
 		this.rawdata = [];
 		this.selector = selector;
 		this.interval = interval;
+		this.sleepSampleSize = sleepSampleSize;
+		this.sleepThreshold = sleepThreshold;
+		this.timeToSleep = timeToSleep;
+		this.lastAwake = Date.now();
+		this.awake = true;
 		this.initGraph();
 		this.update();
 	}
@@ -35,7 +39,7 @@ module.exports = class SleepTracker {
 			},
 			yaxis: {
 				show: false,
-				min: 0,
+				min: -0.1,
 				max: 0.2
 			},
 			xaxis: {
@@ -48,10 +52,28 @@ module.exports = class SleepTracker {
 	}
 	updateData(datum) {
 		var data = this.data;
-		if (data.length > 30) {
+		if (data.length > number_of_points) {
 			data.shift();
 		}
-		data.push([Date.now(), datum]);
+
+		data.push([Date.now(), datum || 0]);
+
+		this.sampleData();
+
+	}
+	sampleData() {
+		var now = Date.now();
+		var sampleData = this.data
+		.filter(item => now - item[0] < this.sleepSampleSize)
+		.map(item => item[1]);
+		var mean = _.mean(sampleData).toFixed(4);
+		
+		if (mean > this.sleepThreshold) {
+			this.lastAwake = now;
+			this.awake = true;
+		} else if (now - this.lastAwake > this.timeToSleep) {
+			this.awake = false;
+		}
 	}
 	deviceMotionHandler(eventData) {
 		var acceleration = eventData.acceleration;
@@ -60,8 +82,10 @@ module.exports = class SleepTracker {
 		this.rawdata.push(data);
 	}
 	sampleRawData() {
-		$('#debug').text(_.mean(this.rawdata));
-		var result = Math.min(_.mean(this.rawdata), 0.15);
+		var rawdata = this.rawdata
+		var result = Math.min(
+			(_.max(rawdata) + _.min(rawdata))/2, 
+		0.15);
 		this.rawdata = [];
 		this.previous = 0;
 		return result;

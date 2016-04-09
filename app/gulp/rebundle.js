@@ -20,7 +20,6 @@ module.exports = function rebundle(bundler, dest) {
 	})
 	.pipe(duration('rebundle'))
 	.pipe(source('index.js'))
-	.pipe(buffer()).pipe(uglify())
 	.pipe(gulp.dest(dest))
 	.pipe(notify({
 		title   : 'BUILD SUCCESS',

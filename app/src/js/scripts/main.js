@@ -5,7 +5,7 @@ var AnimMan = require('./AnimationManager');
 var AnimEl = require('./AnimationElement');
 var SleepTracker = require('./SleepTracker');
 module.exports = function() {
-	var tracker = new SleepTracker(1000, '#chart-placeholder');
+	var tracker = new SleepTracker(1000, '#chart-placeholder', 30000, 60 * 1000, 0.05);
 	var animation = new AnimMan([
 		[
 			new AnimEl('body', {

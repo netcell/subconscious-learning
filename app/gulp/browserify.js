@@ -10,7 +10,7 @@ var folder     = require('./config').folder;
  */
 function bundle(dest) {
 	/** source maps setting */
-	watchify.args.debug = true;
+	// watchify.args.debug = true;
 	/** Browserify bundler */
 	var bundler = browserify(folder.src + '/js/index.js', watchify.args);
 	/** Watchify bundler if needed */
@@ -18,6 +18,7 @@ function bundle(dest) {
 	/** Browserify transforms */
 	bundler.transform("babelify", {presets: ["es2015"]});
 	bundler.transform("rfolderify");
+	bundler.transform("uglifyify");
 	/** ! Browserify transforms */
 	/** Rebundle on update if watchify is used */
 	bundler.on('update', function(){
