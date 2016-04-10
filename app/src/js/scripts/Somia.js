@@ -5,7 +5,7 @@ module.exports = class Somia {
 		this.tracker = sleepTracker;
 		this.playing = false;
 		this.themeLoop = new Media(`assets/theme-loop.mp3`);
-		this.themeLoop.setVolume(0.5);
+		this.themeLoop.setVolume(1);
 		this.themeLoop.play({
 			numberOfLoop: 999
 		});
@@ -34,12 +34,12 @@ module.exports = class Somia {
 			if (this.tracker.awaken && audio) {
 				audio.stop();
 				audio.release();
-				this.themeLoop.setVolume(0.5)
+				this.themeLoop.setVolume(1)
 			}
 		} else {
 			if (!this.tracker.awake) {
 				if (Date.now() - this.lastPlayed > 3000) {
-					this.themeLoop.setVolume(0.2);
+					this.themeLoop.setVolume(0.5);
 					audio && audio.release();
 					this.getNextAudio();
 					this.audio.play();
